@@ -325,7 +325,18 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  throw new Error('Not implemented');
+  const regexp = /[^a-z]/g;
+  const chars = str.toLowerCase().split(regexp).join('').split('');
+  const leftPart = chars
+    .slice(0, Math.floor(chars.length / 2))
+    .sort()
+    .join('');
+  const rightPart = chars
+    .slice(chars.length - Math.floor(chars.length / 2))
+    .sort()
+    .join('');
+
+  return leftPart === rightPart;
 }
 
 /**
@@ -340,8 +351,9 @@ function isPalindrome(str) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const stringToArray = sentence.split(' ').sort((a, b) => b.length - a.length);
+  return stringToArray[0];
 }
 
 /**
@@ -354,8 +366,13 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  const result = str
+    .split(' ')
+    .map((a) => a.split('').reverse().join(''))
+    .join(' ');
+
+  return result;
 }
 
 /**
@@ -369,8 +386,15 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  const result = str.split('').map((char) => {
+    if (char === char.toUpperCase()) {
+      return char.toLowerCase();
+    }
+    return char.toUpperCase();
+  });
+
+  return result.join('');
 }
 
 /**
@@ -386,8 +410,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
